@@ -36,6 +36,23 @@
             border-radius: 6px;
             display: block;
         }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 35px;
+            border: 1px solid #4a3b69;
+        }
+        th, td {
+            border: 1px solid #4a3b69;
+            padding: 10px 14px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #2a1b3d;
+            color: #b89be0;
+            font-family: "Cinzel", Georgia, serif;
+        }
         hr {
             border: 0;
             border-top: 1px solid #3d2b52;
@@ -82,6 +99,75 @@
         <div class="gantt-card">
             <h3>Week 5</h3>
             <img src="Week5%20gantt%20chart.png" alt="Week 5 Gantt Chart">
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="gantt-section">
+        <h2>Architecture: Initial CRC Cards &amp; Week 3 Interim Diagram</h2>
+
+        <h3>Initial CRC Cards</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Class Name</th>
+                    <th>Responsibilities</th>
+                    <th>Collaborators</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Main (later Cog, MainMenuScreen, GameScreen)</strong></td>
+                    <td>Sets up the game window, loads the Tiled campus map, centres the camera on the player, and runs the main render loop.</td>
+                    <td>GameWorld, GameTimer, Player</td>
+                </tr>
+                <tr>
+                    <td><strong>GameWorld</strong></td>
+                    <td>Acts as a facade to store all active entities in a list and call their gameStart(), update(), and render() methods each frame.</td>
+                    <td>Entity, Player, Goose, HiddenEvent</td>
+                </tr>
+                <tr>
+                    <td><strong>Entity (Abstract)</strong></td>
+                    <td>Base class holding shared 2D coordinates (x, y) and abstract loop methods for world objects.</td>
+                    <td>None</td>
+                </tr>
+                <tr>
+                    <td><strong>Player</strong></td>
+                    <td>Handles student avatar movement, map boundary collisions, and sanity level.</td>
+                    <td>Entity, InputManager, Inventory</td>
+                </tr>
+                <tr>
+                    <td><strong>InputManager</strong></td>
+                    <td>Polls keyboard inputs (WASD movement and P pause key) so keybinds are kept in one class.</td>
+                    <td>None</td>
+                </tr>
+                <tr>
+                    <td><strong>GameTimer</strong></td>
+                    <td>Counts down from 5 minutes (300 seconds), toggles pause state, and draws the Scene2D pause overlay.</td>
+                    <td>InputManager, Utilities, MainMenuScreen</td>
+                </tr>
+                <tr>
+                    <td><strong>Goose &amp; GooseAI</strong></td>
+                    <td>Controls autonomous goose wandering, vision cone and hearing circle detection, and non-violent player chasing.</td>
+                    <td>Entity, Player</td>
+                </tr>
+                <tr>
+                    <td><strong>Inventory &amp; Item</strong></td>
+                    <td>Stores player items and applies non-violent distraction or transformation effects.</td>
+                    <td>Player, Goose, GameWorld</td>
+                </tr>
+                <tr>
+                    <td><strong>HiddenEvent</strong></td>
+                    <td>Triggers hidden campus map interactions (hiding spots, mud, bread dispenser, portal key).</td>
+                    <td>Entity, Player, GameWorld</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="gantt-card">
+            <h3>Week 3 Interim Class Diagram</h3>
+            <img src="interim-diagram.png" alt="Week 3 Interim Class Diagram">
         </div>
     </div>
 </body>
